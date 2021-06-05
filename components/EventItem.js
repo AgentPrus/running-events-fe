@@ -7,10 +7,10 @@ const EventItem = ({evt}) => {
     return (
         <div className={styles.event}>
             <div className={styles.img}>
-                <Image src={evt.image ? evt.image : '/images/default_img.jpg'} height={100} width={170}/>
+                <Image src={evt.image ? evt.image.formats.thumbnail.url : '/images/default_img.jpg'} height={100} width={170}/>
             </div>
             <div className={styles.info}>
-                <span>{evt.date} at {evt.time}</span>
+                <span>{new Date(evt.date).toLocaleDateString('en-US')} at {evt.time}</span>
                 <h3>{evt.name}</h3>
             </div>
             <div className={styles.link}>
