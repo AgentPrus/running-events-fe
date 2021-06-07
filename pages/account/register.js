@@ -12,11 +12,13 @@ import styles from '@/styles/AuthForm.module.css';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
-  const [userName, setUserName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const { register, error } = useContext(AuthContext);
+
+  useEffect(() => error && toast.error(error));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const RegisterPage = () => {
       toast.error('Passwords do not match!');
       return;
     }
-    register({ email, password, userName });
+    register({ email, password, username });
   };
 
   return (
@@ -38,7 +40,7 @@ const RegisterPage = () => {
           <div>
             <label htmlFor="userName">
               User name
-              <input type="text" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
+              <input type="text" id="userName" value={username} onChange={(e) => setUsername(e.target.value)} />
             </label>
           </div>
           <div>
